@@ -13,4 +13,3 @@
         comment: "{{ item['first'] | upper }} + ' ' + {{ item['last'] | upper }}"
         password: "{{ lookup('ansible.builtin.password', '/tmp/passwords', encrypt=sha512_crypt) }}"
       loop: "{{ users }}"
-  

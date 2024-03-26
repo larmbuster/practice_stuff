@@ -11,11 +11,11 @@ users:
     last: mulder
 
   - name: wskinner
-    group: fbidirectores
+    group: fbidirectors
     first: walter
     last: skinner
 
   - name: etooms
-    group: suspects
+    group: fbisuspects
     first: eugene
     last: tooms
