@@ -1,15 +1,21 @@
 ---
 - name: Create users from vars file
-  hosts: localhost
+  hosts: all
   gather_facts: false
   vars_files:
     - users.yml
 
   tasks:
-    - name: Create users
+    - name: Create users along with passwordfile for each user
       ansible.builtin.user:
         name: "{{ item['name'] }}"
         groups: "{{ item['group'] }}"
-        comment: "{{ item['first'] | upper }} + ' ' + {{ item['last'] | upper }}"
-        password: "{{ lookup('ansible.builtin.password', '/tmp/passwords', encrypt=sha512_crypt) }}"
+        comment: "{{ item['first'] | capitalize + ' ' + item['last'] | capitalize }}"
+        password: "{{ lookup('ansible.builtin.password', '/tmp/' + item['name'] + '_passwordfile') | password_hash('sha512') }}"
+      loop: "{{ users }}"
+
+    - name: Copy passwordfiles from container to hosts
+      ansible.builtin.copy:
+        src: "{{ '/tmp/' + item['name'] + '_passwordfile' }}"
+        dest: "{{ '/tmp/' + item['name'] + '_passwordfile' }}"
       loop: "{{ users }}"
