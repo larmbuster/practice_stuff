@@ -1,0 +1,21 @@
+---
+users:
+  - name: dsculley
+    group: fbiagents
+    first: dana 
+    last: sculley
+  
+  - name: fmulder
+    group: fbiagents
+    first: fox
+    last: mulder
+
+  - name: wskinner
+    group: fbidirectores
+    first: walter
+    last: skinner
+
+  - name: etooms
+    group: suspects
+    first: eugene
+    last: tooms

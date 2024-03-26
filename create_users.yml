@@ -1,0 +1,17 @@
+---
+- name: Create users from vars file
+  host: localhost
+  gather_facts: false
+  vars_files:
+    - users.yml
+
+  tasks:
+    - name: Create users
+      ansible.builtin.user:
+        name: "{{ item['user'] }}"
+        groups: "{{ item['group'] }}"
+        uid: "{{ item['uid'] }}"
+        comment: "{{ item['first'] | upper }} + ' ' + {{ item['last'] | upper }}"
+        password: "{{ lookup('ansible.builtin.password', '/tmp/passwords/', encrypt=sha512_crypt) }}"
+      loop: "{{ users }}"
+  
