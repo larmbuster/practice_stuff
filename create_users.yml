@@ -12,6 +12,6 @@
         groups: "{{ item['group'] }}"
         uid: "{{ item['uid'] }}"
         comment: "{{ item['first'] | upper }} + ' ' + {{ item['last'] | upper }}"
-        password: "{{ lookup('ansible.builtin.password', '/tmp/passwords/', encrypt=sha512_crypt) }}"
+        password: "{{ lookup('ansible.builtin.password', '/tmp/passwords', encrypt=sha512_crypt) }}"
       loop: "{{ users }}"
   
