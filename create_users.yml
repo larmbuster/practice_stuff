@@ -8,7 +8,7 @@
   tasks:
     - name: Create users
       ansible.builtin.user:
-        name: "{{ item['user'] }}"
+        name: "{{ item['name'] }}"
         groups: "{{ item['group'] }}"
         comment: "{{ item['first'] | upper }} + ' ' + {{ item['last'] | upper }}"
         password: "{{ lookup('ansible.builtin.password', '/tmp/passwords', encrypt=sha512_crypt) }}"
