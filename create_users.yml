@@ -1,6 +1,6 @@
 ---
 - name: Create users from vars file
-  host: localhost
+  hosts: localhost
   gather_facts: false
   vars_files:
     - users.yml
