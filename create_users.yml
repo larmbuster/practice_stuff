@@ -6,7 +6,7 @@
     - users.yml
 
   tasks:
-    - name: Create users along with password file for each user
+    - name: Create users along with a password file for each user
       ansible.builtin.user:
         name: "{{ item['name'] }}"
         groups: "{{ item['group'] }}"
