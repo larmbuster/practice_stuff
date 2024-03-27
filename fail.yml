@@ -1,0 +1,12 @@
+---
+- hosts:
+  gather_facts: false
+  become: false
+
+  tasks:
+    - name: Test fail handling
+      ansible.builtin.command:
+        cmd: /bin/false
+      register: fail_test
+      until: fail_test is not failed
+      retries: 5
